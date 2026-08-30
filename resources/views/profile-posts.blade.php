@@ -1,0 +1,36 @@
+<x-layout>
+
+    <div class="container py-md-5 container--narrow">
+        <h2>
+            @if ($user->avatar)
+                <img class="avatar-small" src="{{$user->avatar}}" />
+            @endif
+            {{$user->username}}
+
+
+            @if ($user->id != auth()->user()->id)
+                <form class="ml-2 d-inline" action="#" method="POST">
+                    <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
+                    <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
+                </form>
+            @endif
+
+        </h2>
+
+        <div class="profile-nav nav nav-tabs pt-2 mb-4">
+            <a href="#" class="profile-nav-link nav-item nav-link active">Posts: {{ $posts->count() }}</a>
+            {{-- <a href="#" class="profile-nav-link nav-item nav-link">Followers: 3</a>
+            <a href="#" class="profile-nav-link nav-item nav-link">Following: 2</a> --}}
+        </div>
+
+        <div class="list-group"> @foreach ($posts as $post) <a href="/post/{{$post->id}}" class="list-group-item
+            list-group-item-action">
+                @if ($user->avatar)
+                    <img class="avatar-tiny" src="{{$user->avatar}}" />
+                @endif
+                <strong>{{$post->title}}</strong> on {{$post->create_at}}
+            </a>
+        @endforeach
+        </div>
+    </div>
+</x-layout>
