@@ -25,7 +25,8 @@ Route::post('/logout', [UserController::class, "logout"])->middleware('auth');
 // Blog post routes 
 Route::get('/create-post', [PostController::class, 'showCreateForm'])->middleware('auth');
 Route::post('/create-post', [PostController::class, 'saveNewPost'])->middleware('auth');
-Route::get('/post/{post}', [PostController::class, 'viewPost'])->middleware('auth');
+Route::get('/post/{post}', [PostController::class, 'viewPost']);
+Route::delete('/post/{post}', [PostController::class, 'deletePost']);
 
 // User profile routes 
 Route::get('/profile/{user}', [UserProfile::class, 'showUserProfile'])->middleware('auth');
