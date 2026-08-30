@@ -34,7 +34,6 @@ class PostController extends Controller
         // translate body content markdown into html and restricted allowed html tags 
         $postHtml = strip_tags( Str::markdown($post->body) , '<p><ul><ol><li><br><strong><em><h1><h2><h3><h4><h5><h6>') ;
         $post['body'] = $postHtml;
-        
 
         return view('single-post', [
             'post' => $post
