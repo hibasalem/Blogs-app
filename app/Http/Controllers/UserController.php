@@ -13,9 +13,9 @@ class UserController extends Controller
     {
         $incomingRequest = $request->validate(
             [
-                "username" => ["required", "string", "min:3", "max:20", Rule::unique("users", 'username')],
+                "username" => ["required", "string", "min:4", "max:20", Rule::unique("users", 'username')],
                 "email" => ["required", "email", Rule::unique("users", 'email')],
-                "password" => ["required", "min:2", "max:30", "confirmed"],
+                "password" => ["required", "min:8", "max:30", "confirmed"],
             ]
         );
         $user = User::create([

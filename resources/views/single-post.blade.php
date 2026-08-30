@@ -1,35 +1,28 @@
 <x-layout>
-  <div class="container py-md-5">
-      <div class="row align-items-center">
-        <div class="col-lg-7 py-3 py-md-5">
-          <h1 class="display-3">Remember Writing?</h1>
-          <p class="lead text-muted">Are you sick of short tweets and impersonal &ldquo;shared&rdquo; posts that are reminiscent of the late 90&rsquo;s email forwards? We believe getting back to actually writing is the key to enjoying the internet again.</p>
-        </div>
-        <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-          <form action="#" method="POST" id="registration-form">
-            <div class="form-group">
-              <label for="username-register" class="text-muted mb-1"><small>Username</small></label>
-              <input name="username" id="username-register" class="form-control" type="text" placeholder="Pick a username" autocomplete="off" />
-            </div>
 
-            <div class="form-group">
-              <label for="email-register" class="text-muted mb-1"><small>Email</small></label>
-              <input name="email" id="email-register" class="form-control" type="text" placeholder="you@example.com" autocomplete="off" />
-            </div>
-
-            <div class="form-group">
-              <label for="password-register" class="text-muted mb-1"><small>Password</small></label>
-              <input name="password" id="password-register" class="form-control" type="password" placeholder="Create a password" />
-            </div>
-
-            <div class="form-group">
-              <label for="password-register-confirm" class="text-muted mb-1"><small>Confirm Password</small></label>
-              <input name="password" id="password-register-confirm" class="form-control" type="password" placeholder="Confirm password" />
-            </div>
-
-            <button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for OurApp</button>
-          </form>
-        </div>
-      </div>
+  <div class="container py-md-5 container--narrow">
+    <div class="d-flex justify-content-between">
+      <h2>{{$post->title}}</h2>
+      <span class="pt-2">
+        <a href="#" class="text-primary mr-2" data-toggle="tooltip" data-placement="top" title="Edit"><i
+            class="fas fa-edit"></i></a>
+        <form class="delete-post-form d-inline" action="#" method="POST">
+          <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i
+              class="fas fa-trash"></i></button>
+        </form>
+      </span>
     </div>
+
+    <p class="text-muted small mb-4">
+      @if ($post->postCreator->avatar)
+        <a href="#"><img class="avatar-tiny" src="{{$post->postCreator->avatar}}" /></a>
+      @endif
+      Posted by <a href="#"> {{$post->postCreator->username}}</a> {{$post->created_at}}
+    </p>
+
+    <div class="body-content">
+      <p>{{$post->body}}.</p>
+    </div>
+  </div>
+
 </x-layout>
