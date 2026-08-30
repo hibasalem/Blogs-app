@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserProfile;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::get('/create-post', [PostController::class, 'showCreateForm'])->middlewar
 Route::post('/create-post', [PostController::class, 'saveNewPost'])->middleware('auth');
 Route::get('/post/{post}', [PostController::class, 'viewPost'])->middleware('auth');
 
+// User profile routes 
+Route::get('/profile/{user}', [UserProfile::class, 'showUserProfile'])->middleware('auth');
