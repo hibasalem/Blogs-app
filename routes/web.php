@@ -25,7 +25,16 @@ Route::post('/logout', [UserController::class, "logout"])->middleware('auth');
 // Blog post routes 
 Route::get('/create-post', [PostController::class, 'showCreateForm'])->middleware('auth');
 Route::post('/create-post', [PostController::class, 'saveNewPost'])->middleware('auth');
-Route::get('/post/{post}', [PostController::class, 'viewPost'])->middleware('auth');
+Route::get('/post/{post}', [PostController::class, 'viewPost']);
+Route::delete('/post/{post}', [PostController::class, 'deletePost'])->middleware('can:delete,post');
+Route::get('/post/{post}/edit', [PostController::class, 'getForm'])->middleware('can:update,post');
+Route::put('/post/{post}/edit', [PostController::class, 'updateForm'])->middleware('can:update,post');
 
-// User profile routes 
+// User profile routes
 Route::get('/profile/{user}', [UserProfile::class, 'showUserProfile'])->middleware('auth');
+
+// Admin routes
+Route::middleware(['auth', 'can:admin'])->group(function () {
+    // Add your admin routes here
+    // Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+});
