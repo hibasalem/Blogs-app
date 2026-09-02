@@ -27,6 +27,8 @@ Route::get('/create-post', [PostController::class, 'showCreateForm'])->middlewar
 Route::post('/create-post', [PostController::class, 'saveNewPost'])->middleware('auth');
 Route::get('/post/{post}', [PostController::class, 'viewPost']);
 Route::delete('/post/{post}', [PostController::class, 'deletePost'])->middleware('can:delete,post');
+Route::get('/post/{post}/edit', [PostController::class, 'getForm'])->middleware('can:update,post');
+Route::put('/post/{post}/edit', [PostController::class, 'updateForm'])->middleware('can:update,post');
 
 // User profile routes 
 Route::get('/profile/{user}', [UserProfile::class, 'showUserProfile'])->middleware('auth');
