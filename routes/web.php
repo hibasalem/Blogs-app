@@ -30,5 +30,11 @@ Route::delete('/post/{post}', [PostController::class, 'deletePost'])->middleware
 Route::get('/post/{post}/edit', [PostController::class, 'getForm'])->middleware('can:update,post');
 Route::put('/post/{post}/edit', [PostController::class, 'updateForm'])->middleware('can:update,post');
 
-// User profile routes 
+// User profile routes
 Route::get('/profile/{user}', [UserProfile::class, 'showUserProfile'])->middleware('auth');
+
+// Admin routes
+Route::middleware(['auth', 'can:admin'])->group(function () {
+    // Add your admin routes here
+    // Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+});
